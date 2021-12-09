@@ -3,10 +3,7 @@ var titleDumper = document.querySelector(".poster-title")
 var quoteDumper = document.querySelector(".poster-quote")
 var imageDumper = document.querySelector(".poster-img")
 
-// var imageDumper = document.querySelector(".poster-img");
-var titleDumper = document.querySelector(".poster-title");
-var quoteDumper = document.querySelector(".poster-quote");
-
+var heTouchedTheButton = document.querySelector(".show-random");
 
 // we've provided you with some data to work with 👇
 var images = [
@@ -111,18 +108,18 @@ var quotes = [
 
 
 
-
-
-var dumpings = {
-  images: images[0],
-  titles: titles[0],
-  quotes: quotes[0],
-};
-
-document.getElementById("poster-img").src = `${"dumpings.images"}`;
-titleDumper.innerHTML = `<h6>${dumpings.titles}</h6>`; // Please note that the tags have been changed from h1 to h6 for stylistic reasons.
-quoteDumper.innerHTML = `<h3>${dumpings.quotes}</h3>`;
-
+// 
+//
+// var dumpings = {
+//   images: images[0],
+//   titles: titles[0],
+//   quotes: quotes[0],
+// };
+//
+// document.getElementById("poster-img").src = `${"dumpings.images"}`;
+// titleDumper.innerHTML = `<h6>${dumpings.titles}</h6>`; // Please note that the tags have been changed from h1 to h6 for stylistic reasons.
+// quoteDumper.innerHTML = `<h3>${dumpings.quotes}</h3>`;
+//
 
 
 
@@ -133,6 +130,8 @@ var currentPoster;
 // event listeners go here 👇
 
 window.addEventListener('load', randomPoster)
+
+heTouchedTheButton.addEventListener('click', randomPoster);
 
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
