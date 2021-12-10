@@ -1,11 +1,30 @@
 // query selector variables go here 👇
-var titleDumper = document.querySelector(".poster-title")
-var quoteDumper = document.querySelector(".poster-quote")
-var imageDumper = document.querySelector(".poster-img")
 
+var titleDumper = document.querySelector(".poster-title");
+var quoteDumper = document.querySelector(".poster-quote");
+var imageDumper = document.querySelector(".poster-img");
+
+// var poster = document.querySelector("poster")
+// var posterImg = document.querySelector(".poster-img");
+// var posterTitle = document.querySelector(".poster-title");
+// var poster-quote = document.querySelector(".posterpuote");
+//
+// var saveThisPosterButton = document.querySelector(".save-poster");
+var showSavedButton = document.querySelector(".show-saved");
 var heTouchedTheButton = document.querySelector(".show-random");
+var makePosterButton = document.querySelector(".show-form")
+var nevermindReturnButton = document.querySelector(".show-main");
+var backToMainButton = document.querySelector(".back-to-main");
+
+var houdiniMainPoster = document.querySelector(".main-poster");
+
+var savedPostersPage = document.querySelector(".saved-posters");
+var posterForm = document.querySelector(".poster-form");
+
+
 
 // we've provided you with some data to work with 👇
+
 var images = [
   "./assets/bees.jpg",
   "./assets/bridge.jpg",
@@ -108,7 +127,7 @@ var quotes = [
 
 
 
-// 
+//
 //
 // var dumpings = {
 //   images: images[0],
@@ -132,6 +151,26 @@ var currentPoster;
 window.addEventListener('load', randomPoster)
 
 heTouchedTheButton.addEventListener('click', randomPoster);
+showSavedButton.addEventListener('click', showSaved);
+makePosterButton.addEventListener('click', showMakeMyPoster);
+nevermindReturnButton.addEventListener('click', backHome);
+backToMainButton.addEventListener('click', backHome);
+
+function showMakeMyPoster() {
+  makeDisappear(houdiniMainPoster);
+  makeAppear(posterForm);
+};
+
+function showSaved() {
+  makeDisappear(houdiniMainPoster);
+  makeAppear(savedPostersPage);
+}
+
+function backHome() {
+  makeDisappear(savedPostersPage);
+  makeDisappear(posterForm);
+  makeAppear(houdiniMainPoster);
+}
 
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
@@ -144,14 +183,34 @@ function randomPoster() {
     quotes[getRandomIndex(quotes)],
   )
   generatePoster()
-}
+};
 
 function generatePoster() {
   imageDumper.src = currentPoster.imageURL;
   titleDumper.innerText = currentPoster.title;
   quoteDumper.innerText = currentPoster.quote;
-}
+};
+
+function makeDisappear(element) {
+  event.preventDefault();
+  element.classList.add("hidden");
+};
+
+function makeAppear(element) {
+  event.preventDefault();
+  element.classList.remove("hidden");
+};
+
+// function makeDisappear() {
+//   event.preventDefault();
+//   houdiniMainPoster.classList.add("hidden");
+// };
+//
+// function makeAppear() {
+//   event.preventDefault();
+//   posterForm.classList.remove("hidden");
+// };
 
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
-}
+};
