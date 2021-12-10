@@ -3,7 +3,9 @@
 var titleDumper = document.querySelector(".poster-title");
 var quoteDumper = document.querySelector(".poster-quote");
 var imageDumper = document.querySelector(".poster-img");
-
+var imageInput = document.querySelector("#poster-image-url")
+var titleInput = document.querySelector("#poster-title")
+var quoteInput = document.querySelector("#poster-quote")
 // var poster = document.querySelector("poster")
 // var posterImg = document.querySelector(".poster-img");
 // var posterTitle = document.querySelector(".poster-title");
@@ -20,8 +22,10 @@ var houdiniMainPoster = document.querySelector(".main-poster");
 
 var savedPostersPage = document.querySelector(".saved-posters");
 var posterForm = document.querySelector(".poster-form");
-
-
+var showMyPosterButton = document.querySelector(".make-poster")
+var imageInput = document.querySelector("#poster-image-url")
+var titleInput = document.querySelector("#poster-title")
+var quoteInput = document.querySelector("#poster-quote")
 
 // we've provided you with some data to work with 👇
 
@@ -140,9 +144,6 @@ var quotes = [
 // quoteDumper.innerHTML = `<h3>${dumpings.quotes}</h3>`;
 //
 
-
-
-
 var savedPosters = [];
 var currentPoster;
 
@@ -155,6 +156,18 @@ showSavedButton.addEventListener('click', showSaved);
 makePosterButton.addEventListener('click', showMakeMyPoster);
 nevermindReturnButton.addEventListener('click', backHome);
 backToMainButton.addEventListener('click', backHome);
+showMyPosterButton.addEventListener('click', function() {
+  showUserPoster(image, title, quote)
+})
+
+// functions and event handlers go here 👇
+// (we've provided one for you to get you started)!
+
+function showUserPoster(imageInput,titleInput,quoteInput) {
+  event.preventDefault()
+  var userPoster = new Poster(imageInput.value, titleInput.value, quoteInput.value)
+  console.log(userPoster)
+}
 
 function showMakeMyPoster() {
   makeDisappear(houdiniMainPoster);
@@ -172,11 +185,7 @@ function backHome() {
   makeAppear(houdiniMainPoster);
 }
 
-// functions and event handlers go here 👇
-// (we've provided one for you to get you started)!
-
 function randomPoster() {
-  console.log(images)
   currentPoster = new Poster(
     images[getRandomIndex(images)],
     titles[getRandomIndex(titles)],
@@ -200,16 +209,6 @@ function makeAppear(element) {
   event.preventDefault();
   element.classList.remove("hidden");
 };
-
-// function makeDisappear() {
-//   event.preventDefault();
-//   houdiniMainPoster.classList.add("hidden");
-// };
-//
-// function makeAppear() {
-//   event.preventDefault();
-//   posterForm.classList.remove("hidden");
-// };
 
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
