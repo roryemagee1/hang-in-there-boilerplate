@@ -3,24 +3,24 @@
 var titleDumper = document.querySelector(".poster-title");
 var quoteDumper = document.querySelector(".poster-quote");
 var imageDumper = document.querySelector(".poster-img");
-var imageInput = document.querySelector("#poster-image-url")
-var titleInput = document.querySelector("#poster-title")
-var quoteInput = document.querySelector("#poster-quote")
+
+var imageInput = document.querySelector("#poster-image-url");
+var titleInput = document.querySelector("#poster-title");
+var quoteInput = document.querySelector("#poster-quote");
+
 var saveThisPosterButton = document.querySelector(".save-poster");
 var showSavedButton = document.querySelector(".show-saved");
 var heTouchedTheButton = document.querySelector(".show-random");
-var makePosterButton = document.querySelector(".show-form")
+var makePosterButton = document.querySelector(".show-form");
 var nevermindReturnButton = document.querySelector(".show-main");
 var backToMainButton = document.querySelector(".back-to-main");
+var showMyPosterButton = document.querySelector(".make-poster")
 
 var houdiniMainPoster = document.querySelector(".main-poster");
-
 var savedPostersPage = document.querySelector(".saved-posters");
 var posterForm = document.querySelector(".poster-form");
-var showMyPosterButton = document.querySelector(".make-poster")
-var imageInput = document.querySelector("#poster-image-url")
-var titleInput = document.querySelector("#poster-title")
-var quoteInput = document.querySelector("#poster-quote")
+var savedPostersGrid = document.querySelector(".saved-posters-grid");
+
 
 // we've provided you with some data to work with 👇
 
@@ -136,7 +136,8 @@ showSavedButton.addEventListener('click', showSaved);
 makePosterButton.addEventListener('click', showMakeMyPoster);
 nevermindReturnButton.addEventListener('click', backHome);
 backToMainButton.addEventListener('click', backHome);
-showMyPosterButton.addEventListener('click', showUserPoster)
+showMyPosterButton.addEventListener('click', showUserPoster);
+saveThisPosterButton.addEventListener('click', savePoster);
 
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
@@ -179,6 +180,8 @@ function showMakeMyPoster() {
 function showSaved() {
   makeDisappear(houdiniMainPoster);
   makeAppear(savedPostersPage);
+  makeSavedAppear();
+  console.log(savedPosters[0].titles);
 }
 
 function backHome() {
@@ -211,6 +214,23 @@ function makeAppear(element) {
   event.preventDefault();
   element.classList.remove("hidden");
 };
+
+function savePoster() {
+  if (!savedPosters.includes(currentPoster)) {
+    savedPosters.push(currentPoster);
+  };
+};
+
+function makeSavedAppear() {
+  savedPostersGrid.innerHTML = ""
+  savedPostersGrid.innerHTML = `
+    <article class="saved-posters-grid">
+      <img src="${savedPosters[0].imageURL}" alt="No saved posters.">
+      <h1>${savedPosters[0].title}</h1>
+      <h3>${savedPosters[0].quote}</h3>
+    </article>
+  `;
+}
 
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
