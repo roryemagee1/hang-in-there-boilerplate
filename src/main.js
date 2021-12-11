@@ -3,13 +3,10 @@
 var titleDumper = document.querySelector(".poster-title");
 var quoteDumper = document.querySelector(".poster-quote");
 var imageDumper = document.querySelector(".poster-img");
-
-// var poster = document.querySelector("poster")
-// var posterImg = document.querySelector(".poster-img");
-// var posterTitle = document.querySelector(".poster-title");
-// var poster-quote = document.querySelector(".posterpuote");
-//
-// var saveThisPosterButton = document.querySelector(".save-poster");
+var imageInput = document.querySelector("#poster-image-url")
+var titleInput = document.querySelector("#poster-title")
+var quoteInput = document.querySelector("#poster-quote")
+var saveThisPosterButton = document.querySelector(".save-poster");
 var showSavedButton = document.querySelector(".show-saved");
 var heTouchedTheButton = document.querySelector(".show-random");
 var makePosterButton = document.querySelector(".show-form")
@@ -20,8 +17,10 @@ var houdiniMainPoster = document.querySelector(".main-poster");
 
 var savedPostersPage = document.querySelector(".saved-posters");
 var posterForm = document.querySelector(".poster-form");
-
-
+var showMyPosterButton = document.querySelector(".make-poster")
+var imageInput = document.querySelector("#poster-image-url")
+var titleInput = document.querySelector("#poster-title")
+var quoteInput = document.querySelector("#poster-quote")
 
 // we've provided you with some data to work with 👇
 
@@ -125,24 +124,6 @@ var quotes = [
 ];
 
 
-
-
-//
-//
-// var dumpings = {
-//   images: images[0],
-//   titles: titles[0],
-//   quotes: quotes[0],
-// };
-//
-// document.getElementById("poster-img").src = `${"dumpings.images"}`;
-// titleDumper.innerHTML = `<h6>${dumpings.titles}</h6>`; // Please note that the tags have been changed from h1 to h6 for stylistic reasons.
-// quoteDumper.innerHTML = `<h3>${dumpings.quotes}</h3>`;
-//
-
-
-
-
 var savedPosters = [];
 var currentPoster;
 
@@ -155,6 +136,40 @@ showSavedButton.addEventListener('click', showSaved);
 makePosterButton.addEventListener('click', showMakeMyPoster);
 nevermindReturnButton.addEventListener('click', backHome);
 backToMainButton.addEventListener('click', backHome);
+showMyPosterButton.addEventListener('click', showUserPoster)
+
+// functions and event handlers go here 👇
+// (we've provided one for you to get you started)!
+
+function showUserPoster(event) {
+  event.preventDefault()
+  makeAppear(houdiniMainPoster);
+  titles.push(titleInput.value)
+  quotes.push(quoteInput.value)
+  quotes.push(quoteInput.value)
+  makePoster()
+}
+
+function makePoster() {
+  userPoster = new Poster(
+    images[images.length-1],
+    titles[titles.length-1],
+    quotes[quotes.length-1]
+  )
+  imageDumper.src = userPoster.imgURL;
+  titleDumper.innerText = userPoster.title
+  quoteDumper.innerText = userPoster.quote
+
+}
+
+console.log(userPoster)
+var userPoster = new Poster(
+  imageInput.value.src,
+  titleInput.value,
+  quoteInput.value)
+
+console.log(userPoster)
+console.log(savedPosters)
 
 function showMakeMyPoster() {
   makeDisappear(houdiniMainPoster);
@@ -172,11 +187,7 @@ function backHome() {
   makeAppear(houdiniMainPoster);
 }
 
-// functions and event handlers go here 👇
-// (we've provided one for you to get you started)!
-
 function randomPoster() {
-  console.log(images)
   currentPoster = new Poster(
     images[getRandomIndex(images)],
     titles[getRandomIndex(titles)],
@@ -200,16 +211,6 @@ function makeAppear(element) {
   event.preventDefault();
   element.classList.remove("hidden");
 };
-
-// function makeDisappear() {
-//   event.preventDefault();
-//   houdiniMainPoster.classList.add("hidden");
-// };
-//
-// function makeAppear() {
-//   event.preventDefault();
-//   posterForm.classList.remove("hidden");
-// };
 
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
