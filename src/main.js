@@ -158,6 +158,7 @@ function makePoster() {
   )
   imageDumper.src = userPoster.imgURL;
   titleDumper.innerText = userPoster.title
+  quoteDumper.innerText = userPoster.quote
 
 }
 
