@@ -144,9 +144,10 @@ showMyPosterButton.addEventListener('click', showUserPoster)
 function showUserPoster(event) {
   event.preventDefault()
   makeAppear(houdiniMainPoster);
-  titles.push(titleInput.value)
-  quotes.push(quoteInput.value)
-  quotes.push(quoteInput.value)
+  makeDisappear(posterForm);
+  titles.push(titleInput.value);
+  quotes.push(quoteInput.value);
+  images.push(imageInput.value);
   makePoster()
 }
 
@@ -154,17 +155,16 @@ function makePoster() {
   userPoster = new Poster(
     images[images.length-1],
     titles[titles.length-1],
-    quotes[quotes.length-1]
+    quotes[quotes.length-1],
   )
-  imageDumper.src = userPoster.imgURL;
-  titleDumper.innerText = userPoster.title
-  quoteDumper.innerText = userPoster.quote
-
+  imageDumper.src = userPoster.imageURL;
+  titleDumper.innerText = userPoster.title;
+  quoteDumper.innerText = userPoster.quote;
 }
 
-console.log(userPoster)
+console.log(images[images.length-1])
 var userPoster = new Poster(
-  imageInput.value.src,
+  imageInput.value,
   titleInput.value,
   quoteInput.value)
 
