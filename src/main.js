@@ -136,13 +136,13 @@ showSavedButton.addEventListener('click', showSaved);
 makePosterButton.addEventListener('click', showMakeMyPoster);
 nevermindReturnButton.addEventListener('click', backHome);
 backToMainButton.addEventListener('click', backHome);
-showMyPosterButton.addEventListener('click', showUserPoster);
+showMyPosterButton.addEventListener('click', showCurrentPoster);
 saveThisPosterButton.addEventListener('click', savePoster);
 
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
 
-function showUserPoster(event) {
+function showCurrentPoster(event) {
   event.preventDefault()
   makeAppear(houdiniMainPoster);
   makeDisappear(posterForm);
@@ -153,23 +153,23 @@ function showUserPoster(event) {
 }
 
 function makePoster() {
-  userPoster = new Poster(
+  currentPoster = new Poster(
     images[images.length-1],
     titles[titles.length-1],
     quotes[quotes.length-1],
   )
-  imageDumper.src = userPoster.imageURL;
-  titleDumper.innerText = userPoster.title;
-  quoteDumper.innerText = userPoster.quote;
+  imageDumper.src = currentPoster.imageURL;
+  titleDumper.innerText = currentPoster.title;
+  quoteDumper.innerText = currentPoster.quote;
 }
 
 console.log(images[images.length-1])
-var userPoster = new Poster(
+var currentPoster = new Poster(
   imageInput.value,
   titleInput.value,
   quoteInput.value)
 
-console.log(userPoster)
+console.log(currentPoster)
 console.log(savedPosters)
 
 function showMakeMyPoster() {
