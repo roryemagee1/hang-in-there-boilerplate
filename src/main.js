@@ -138,32 +138,40 @@ nevermindReturnButton.addEventListener('click', backHome);
 backToMainButton.addEventListener('click', backHome);
 showMyPosterButton.addEventListener('click', showCurrentPoster);
 saveThisPosterButton.addEventListener('click', savePoster);
-savedPostersPage.addEventListener('dblclick', deletePoster)
+savedPostersGrid.addEventListener('dblclick', deletePoster)
 
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
 
 function makeSavedAppear() {
+  savedPostersGrid.innerHTML = ""
   for(var i = 0; i < savedPosters.length; i++){
-    savedPostersGrid.innerHTML += ""
     savedPostersGrid.innerHTML += `
-    <section class="mini-posters-grid mini-poster">
-    <img class="poster-img" src="${savedPosters[i].imageURL}" alt="saved-poster">
+    <section class="mini-poster" id="${savedPosters[i].id}">
+    <img class="poster-img" src="${savedPosters[i].imageURL}">
     <h2>${savedPosters[i].title}</h2>
     <h4>${savedPosters[i].quote}</h4>
+    </section>
     `;
   }
 }
 
+function makeSavedDisappear() {
+  savedPostersGrid.innerHTML = "";
+}
+
 function deletePoster(event) {
-var target = event.target.id
+var userTarget = event.target.id;
   for(var i = 0; i < savedPosters.length; i++) {
-    if(`${savedPosters[i].length}` === target) {
-      savedPosters.splice(i, 1)
+    if(userTarget == savedPosters[i].id.toString()) {
+      savedPosters.splice(i, 1);
     }
   }
-  makeSavedAppear()
+  makeSavedDisappear();
+  makeSavedAppear();
 }
+
+console.log(savedPosters)
 
 function showCurrentPoster(event) {
   event.preventDefault()
@@ -234,10 +242,6 @@ function savePoster() {
     savedPosters.push(currentPoster);
   };
 };
-
-function makeSavedDisappear() {
-  savedPostersGrid.innerHTML = "";
-}
 
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
