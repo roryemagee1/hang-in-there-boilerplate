@@ -1,5 +1,11 @@
-## Hang In There™
 
+## Hang In There™
+---
+
+*Technologies used: JavaScript, CSS, HTML
+*Contributors: Rory Magee and Katie Toler
+
+---
 Hang In There™ is a revolutionary motivational website that alters the stream of images accessed by your eyeballs in order to create a net-positive increase in mood.
 
 We discovered after years of research that when adorable photos are combined with short-cheesy motivational phrases in random rapid succession, the mood of the one perceiving said images increases exponentially.  We developed this web platform as a way of harnessing the power of this phenomenon.  
