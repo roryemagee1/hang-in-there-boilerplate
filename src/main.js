@@ -181,13 +181,13 @@ function showSaved() {
   makeDisappear(houdiniMainPoster);
   makeAppear(savedPostersPage);
   makeSavedAppear();
-  console.log(savedPosters[0].titles);
 }
 
 function backHome() {
   makeDisappear(savedPostersPage);
   makeDisappear(posterForm);
   makeAppear(houdiniMainPoster);
+  makeSavedDisappear();
 }
 
 function randomPoster() {
@@ -222,15 +222,72 @@ function savePoster() {
 };
 
 function makeSavedAppear() {
-  savedPostersGrid.innerHTML = ""
-  savedPostersGrid.innerHTML = `
-    <article class="saved-posters-grid">
-      <img src="${savedPosters[0].imageURL}" alt="No saved posters.">
-      <h1>${savedPosters[0].title}</h1>
-      <h3>${savedPosters[0].quote}</h3>
-    </article>
-  `;
+  for(var i = 0; i < savedPosters.length; i++){
+    savedPostersGrid.innerHTML += ""
+    savedPostersGrid.innerHTML += `
+    <section class="mini-posters-grid mini-poster">
+    <img class="poster-img" src="${savedPosters[i].imageURL}" alt="saved-poster">
+    <h2>${savedPosters[i].title}</h2>
+    <h4>${savedPosters[i].quote}</h4>
+    `;
+  }
+  makeAppear(savedPostersPage)
 }
+
+function makeSavedDisappear() {
+  savedPostersGrid.innerHTML = "";
+}
+
+
+
+
+
+
+
+
+
+
+
+// function makeSavedAppear() {
+//   savedPostersGrid.innerHTML = ""
+//   savedPostersGrid.innerHTML = `
+//     <article class="saved-posters-grid">
+//       <ul class="mini-poster">
+//         <img src="${savedPosters[0].imageURL}" alt="No saved posters.">
+//         <h2>${savedPosters[0].title}</h2>
+//         <h4>${savedPosters[0].quote}</h4>
+//       </ul>
+//     </article>
+//   `;
+// }
+
+// function makeSavedAppear() {
+//   var ul = document.createElement("ul")
+//   for (var i = 0; 0 < savedPosters.length; i++) {
+//     ul.innerHTML = "";
+//     ul.innerHTML = `
+//       <ul class="mini-poster">
+//         <img src="${savedPosters[i].imageURL}" alt="No saved posters.">
+//         <h2>${savedPosters[i].title}</h2>
+//         <h4>${savedPosters[i].quote}</h4>
+//       </ul>
+//     `;
+//     savedPostersGrid.appendChild(ul);
+//   };
+// };
+
+// function makeSavedAppear() {
+//   savedPostersGrid.innerHTML = ""
+//   savedPostersGrid.innerHTML = `
+//     <article class="saved-posters-grid">
+//       <ul class="mini-poster">
+//         <img src="${savedPosters[0].imageURL}" alt="No saved posters.">
+//         <h2>${savedPosters[0].title}</h2>
+//         <h4>${savedPosters[0].quote}</h4>
+//       </ul>
+//     </article>
+//   `;
+// }
 
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
