@@ -138,10 +138,22 @@ nevermindReturnButton.addEventListener('click', backHome);
 backToMainButton.addEventListener('click', backHome);
 showMyPosterButton.addEventListener('click', showCurrentPoster);
 saveThisPosterButton.addEventListener('click', savePoster);
-savedPostersGrid.addEventListener('dblclick', deletePoster)
+savedPostersPage.addEventListener('dblclick', deletePoster)
 
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
+
+function makeSavedAppear() {
+  for(var i = 0; i < savedPosters.length; i++){
+    savedPostersGrid.innerHTML += ""
+    savedPostersGrid.innerHTML += `
+    <section class="mini-posters-grid mini-poster">
+    <img class="poster-img" src="${savedPosters[i].imageURL}" alt="saved-poster">
+    <h2>${savedPosters[i].title}</h2>
+    <h4>${savedPosters[i].quote}</h4>
+    `;
+  }
+}
 
 function deletePoster(event) {
 var target = event.target.id
@@ -222,19 +234,6 @@ function savePoster() {
     savedPosters.push(currentPoster);
   };
 };
-
-function makeSavedAppear() {
-  for(var i = 0; i < savedPosters.length; i++){
-    savedPostersGrid.innerHTML += ""
-    savedPostersGrid.innerHTML += `
-    <section class="mini-posters-grid mini-poster">
-    <img class="poster-img" src="${savedPosters[i].imageURL}" alt="saved-poster">
-    <h2>${savedPosters[i].title}</h2>
-    <h4>${savedPosters[i].quote}</h4>
-    `;
-  }
-  makeAppear(savedPostersPage)
-}
 
 function makeSavedDisappear() {
   savedPostersGrid.innerHTML = "";
