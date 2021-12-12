@@ -1,29 +1,22 @@
-// query selector variables go here 👇
 
 var titleDumper = document.querySelector(".poster-title");
 var quoteDumper = document.querySelector(".poster-quote");
 var imageDumper = document.querySelector(".poster-img");
-var imageInput = document.querySelector("#poster-image-url")
-var titleInput = document.querySelector("#poster-title")
-var quoteInput = document.querySelector("#poster-quote")
+var imageInput = document.querySelector("#poster-image-url");
+var titleInput = document.querySelector("#poster-title");
+var quoteInput = document.querySelector("#poster-quote");
 var saveThisPosterButton = document.querySelector(".save-poster");
 var showSavedButton = document.querySelector(".show-saved");
 var heTouchedTheButton = document.querySelector(".show-random");
-var makePosterButton = document.querySelector(".show-form")
+var makePosterButton = document.querySelector(".show-form");
 var nevermindReturnButton = document.querySelector(".show-main");
 var backToMainButton = document.querySelector(".back-to-main");
-
+var showMyPosterButton = document.querySelector(".make-poster")
 var houdiniMainPoster = document.querySelector(".main-poster");
-
 var savedPostersPage = document.querySelector(".saved-posters");
 var posterForm = document.querySelector(".poster-form");
-var showMyPosterButton = document.querySelector(".make-poster")
-var imageInput = document.querySelector("#poster-image-url")
-var titleInput = document.querySelector("#poster-title")
-var quoteInput = document.querySelector("#poster-quote")
-
-// we've provided you with some data to work with 👇
-
+var savedPostersGrid = document.querySelector(".saved-posters-grid");
+// we've provided you with some data to work with :point_down:
 var images = [
   "./assets/bees.jpg",
   "./assets/bridge.jpg",
@@ -44,7 +37,6 @@ var images = [
   "./assets/tiger.jpg",
   "./assets/turtle.jpg"
 ];
-
 var titles = [
   "determination",
   "success",
@@ -123,22 +115,19 @@ var quotes = [
   "A champion is defined not by their wins but by how they can recover when they fall."
 ];
 
-
 var savedPosters = [];
 var currentPoster;
 
-// event listeners go here 👇
-
+// event listeners go here :point_down:
 window.addEventListener('load', randomPoster)
-
 heTouchedTheButton.addEventListener('click', randomPoster);
 showSavedButton.addEventListener('click', showSaved);
 makePosterButton.addEventListener('click', showMakeMyPoster);
 nevermindReturnButton.addEventListener('click', backHome);
 backToMainButton.addEventListener('click', backHome);
-showMyPosterButton.addEventListener('click', showUserPoster)
+showMyPosterButton.addEventListener('click', showUserPoster);
+saveThisPosterButton.addEventListener('click', savePoster);
 
-// functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
 
 function showUserPoster(event) {
@@ -167,7 +156,6 @@ var userPoster = new Poster(
   imageInput.value,
   titleInput.value,
   quoteInput.value)
-
 console.log(userPoster)
 console.log(savedPosters)
 
@@ -179,6 +167,8 @@ function showMakeMyPoster() {
 function showSaved() {
   makeDisappear(houdiniMainPoster);
   makeAppear(savedPostersPage);
+  makeSavedAppear();
+  console.log(savedPosters[0].titles);
 }
 
 function backHome() {
@@ -211,6 +201,45 @@ function makeAppear(element) {
   event.preventDefault();
   element.classList.remove("hidden");
 };
+
+function savePoster() {
+  if (!savedPosters.includes(currentPoster)) {
+    savedPosters.push(currentPoster);
+  };
+};
+
+function makeSavedAppear() {
+  for(var i = 0; i < savedPosters.length; i++){
+    savedPostersGrid.innerHTML += ""
+    savedPostersGrid.innerHTML += `
+    <section class="mini-posters-grid mini-poster">
+    <img class="poster-img" src="${savedPosters[i].imageURL}" alt="saved-poster">
+    <h2>${savedPosters[i].title}</h2>
+    <h4>${savedPosters[i].quote}</h4>
+    `;
+    savedPostersGrid.innerHTML += ""
+  }
+  makeAppear(savedPostersPage)
+}
+
+
+
+
+// function showCover() {
+//   savedCoversSection.innerHTML = ""
+//   for(var i = 0; i < savedCovers.length; i++ ) {
+//     savedCoversSection.innerHTML +=
+//     `<section class="main-cover">
+//     <img class="cover-image" id=${savedCovers[i].id} src=${savedCovers[i].cover}>
+//     <h2 class="cover-title">${savedCovers[i].title}</h2>
+//     <h3 class="tagline">A tale of <span class="tagline-1">${savedCovers[i].tagline1}</span>
+//     and <span class="tagline-2">${savedCovers[i].tagline2}</span></h3>
+//     </section>`
+//   }
+// };
+
+
+
 
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
