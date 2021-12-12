@@ -2,6 +2,7 @@
 var titleDumper = document.querySelector(".poster-title");
 var quoteDumper = document.querySelector(".poster-quote");
 var imageDumper = document.querySelector(".poster-img");
+
 var imageInput = document.querySelector("#poster-image-url");
 var titleInput = document.querySelector("#poster-title");
 var quoteInput = document.querySelector("#poster-quote");
@@ -12,11 +13,11 @@ var makePosterButton = document.querySelector(".show-form");
 var nevermindReturnButton = document.querySelector(".show-main");
 var backToMainButton = document.querySelector(".back-to-main");
 var showMyPosterButton = document.querySelector(".make-poster")
-var houdiniMainPoster = document.querySelector(".main-poster");
-var savedPostersPage = document.querySelector(".saved-posters");
-var posterForm = document.querySelector(".poster-form");
-var savedPostersGrid = document.querySelector(".saved-posters-grid");
-// we've provided you with some data to work with :point_down:
+
+
+
+// we've provided you with some data to work with 👇
+
 var images = [
   "./assets/bees.jpg",
   "./assets/bridge.jpg",
@@ -168,13 +169,13 @@ function showSaved() {
   makeDisappear(houdiniMainPoster);
   makeAppear(savedPostersPage);
   makeSavedAppear();
-  console.log(savedPosters[0].titles);
 }
 
 function backHome() {
   makeDisappear(savedPostersPage);
   makeDisappear(posterForm);
   makeAppear(houdiniMainPoster);
+  makeSavedDisappear();
 }
 
 function randomPoster() {
@@ -217,29 +218,57 @@ function makeSavedAppear() {
     <h2>${savedPosters[i].title}</h2>
     <h4>${savedPosters[i].quote}</h4>
     `;
-    savedPostersGrid.innerHTML += ""
   }
   makeAppear(savedPostersPage)
+}
+
+function makeSavedDisappear() {
+  savedPostersGrid.innerHTML = "";
 }
 
 
 
 
-// function showCover() {
-//   savedCoversSection.innerHTML = ""
-//   for(var i = 0; i < savedCovers.length; i++ ) {
-//     savedCoversSection.innerHTML +=
-//     `<section class="main-cover">
-//     <img class="cover-image" id=${savedCovers[i].id} src=${savedCovers[i].cover}>
-//     <h2 class="cover-title">${savedCovers[i].title}</h2>
-//     <h3 class="tagline">A tale of <span class="tagline-1">${savedCovers[i].tagline1}</span>
-//     and <span class="tagline-2">${savedCovers[i].tagline2}</span></h3>
-//     </section>`
-//   }
+// function makeSavedAppear() {
+//   savedPostersGrid.innerHTML = ""
+//   savedPostersGrid.innerHTML = `
+//     <article class="saved-posters-grid">
+//       <ul class="mini-poster">
+//         <img src="${savedPosters[0].imageURL}" alt="No saved posters.">
+//         <h2>${savedPosters[0].title}</h2>
+//         <h4>${savedPosters[0].quote}</h4>
+//       </ul>
+//     </article>
+//   `;
+// }
+
+// function makeSavedAppear() {
+//   var ul = document.createElement("ul")
+//   for (var i = 0; 0 < savedPosters.length; i++) {
+//     ul.innerHTML = "";
+//     ul.innerHTML = `
+//       <ul class="mini-poster">
+//         <img src="${savedPosters[i].imageURL}" alt="No saved posters.">
+//         <h2>${savedPosters[i].title}</h2>
+//         <h4>${savedPosters[i].quote}</h4>
+//       </ul>
+//     `;
+//     savedPostersGrid.appendChild(ul);
+//   };
 // };
 
-
-
+// function makeSavedAppear() {
+//   savedPostersGrid.innerHTML = ""
+//   savedPostersGrid.innerHTML = `
+//     <article class="saved-posters-grid">
+//       <ul class="mini-poster">
+//         <img src="${savedPosters[0].imageURL}" alt="No saved posters.">
+//         <h2>${savedPosters[0].title}</h2>
+//         <h4>${savedPosters[0].quote}</h4>
+//       </ul>
+//     </article>
+//   `;
+// }
 
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
