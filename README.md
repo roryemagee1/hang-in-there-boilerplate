@@ -37,6 +37,6 @@ Contributors: Rory Magee and Katie Toler
 
 ## Links
 
-### deploy: https://roryemagee1.github.io/hang-in-there-katie-rory/
+### Deploy: https://roryemagee1.github.io/hang-in-there-katie-rory/
 
-### github: https://github.com/roryemagee1/hang-in-there-katie-rory
+### GitHub: https://github.com/roryemagee1/hang-in-there-katie-rory
