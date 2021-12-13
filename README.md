@@ -9,7 +9,7 @@ When the patient accesses the webpage, a random motivational image is generated 
 
 ![gif](https://media1.giphy.com/media/sXJgBYOHSjl278FHXE/giphy.gif?cid=790b761135c23698fc0a60516e32d779831676134d4caad5&rid=giphy.gif)
 
-We have given the patient the option to self-administer the doses of image-title-quote combinations.  With each press of the button titled "Show Another Random Poster", the patient is shown a new random image-title-quote combination.  The patient is free to hit this button at whatever speed of dose administration they are comfortable with. 
+We have given the patient the option to self-administer the doses of image-title-quote combinations.  With each press of the button titled "Show Another Random Poster", the patient is shown a new random image-title-quote combination.  The patient is free to hit this button at whatever speed of dose administration they are comfortable with.
 
 ![gif](https://media3.giphy.com/media/44ZDkOMfNlkJXJyQ1a/giphy.gif?cid=790b76117834db1193c2c9dc73ccc9995c5c9da62bb4006c&rid=giphy.gif)
 
