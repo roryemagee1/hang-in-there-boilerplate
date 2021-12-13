@@ -127,49 +127,95 @@ var currentPoster;
 
 // event listeners go here 👇
 
-window.addEventListener('load', randomPoster);
+window.addEventListener('load', randomPoster)
 
 heTouchedTheButton.addEventListener('click', randomPoster);
 showSavedButton.addEventListener('click', showSaved);
-
+makePosterButton.addEventListener('click', showMakeMyPoster);
 nevermindReturnButton.addEventListener('click', backHome);
 backToMainButton.addEventListener('click', backHome);
-
-makePosterButton.addEventListener('click', showMakeMyPoster);
 showMyPosterButton.addEventListener('click', showCurrentPoster);
-
 saveThisPosterButton.addEventListener('click', savePoster);
 savedPostersGrid.addEventListener('dblclick', deletePoster)
 
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
 
-function randomPoster() {
-  currentPoster = new Poster(
-    images[getRandomIndex(images)],
-    titles[getRandomIndex(titles)],
-    quotes[getRandomIndex(quotes)],
-  );
-  generatePoster();
-};
+function makeSavedAppear() {
+  savedPostersGrid.innerHTML = ""
+  for(var i = 0; i < savedPosters.length; i++){
+    savedPostersGrid.innerHTML += `
+    <section class="mini-poster" id="${savedPosters[i].id}">
+    <img class="poster-img" src="${savedPosters[i].imageURL}" id="${savedPosters[i].id}">
+    <h2>${savedPosters[i].title}</h2>
+    <h4>${savedPosters[i].quote}</h4>
+    </section>
+    `;
+  }
+}
 
+function makeSavedDisappear() {
+  savedPostersGrid.innerHTML = "";
+}
 
-function getRandomIndex(array) {
-  return Math.floor(Math.random() * array.length);
-};
+function deletePoster(event) {
+var userTarget = event.target.id;
+  for(var i = 0; i < savedPosters.length; i++) {
+    if(userTarget == savedPosters[i].id.toString()) {
+      savedPosters.splice(i, 1);
+    }
+  }
+  makeSavedDisappear();
+  makeSavedAppear();
+}
 
+function showCurrentPoster(event) {
+  event.preventDefault()
+  makeAppear(houdiniMainPoster);
+  makeDisappear(posterForm);
+  titles.push(titleInput.value);
+  quotes.push(quoteInput.value);
+  images.push(imageInput.value);
+  makePoster()
+}
 
 function makePoster() {
   currentPoster = new Poster(
     images[images.length-1],
     titles[titles.length-1],
     quotes[quotes.length-1],
-  );
+  )
   imageDumper.src = currentPoster.imageURL;
   titleDumper.innerText = currentPoster.title;
   quoteDumper.innerText = currentPoster.quote;
+}
+
+function showMakeMyPoster() {
+  makeDisappear(houdiniMainPoster);
+  makeAppear(posterForm);
 };
 
+function showSaved() {
+  makeDisappear(houdiniMainPoster);
+  makeAppear(savedPostersPage);
+  makeSavedAppear();
+}
+
+function backHome() {
+  makeDisappear(savedPostersPage);
+  makeDisappear(posterForm);
+  makeAppear(houdiniMainPoster);
+  makeSavedDisappear();
+}
+
+function randomPoster() {
+  currentPoster = new Poster(
+    images[getRandomIndex(images)],
+    titles[getRandomIndex(titles)],
+    quotes[getRandomIndex(quotes)],
+  )
+  generatePoster()
+};
 
 function generatePoster() {
   imageDumper.src = currentPoster.imageURL;
@@ -177,69 +223,15 @@ function generatePoster() {
   quoteDumper.innerText = currentPoster.quote;
 };
 
-
-function showCurrentPoster(event) {
-  event.preventDefault();
-  makeAppear(houdiniMainPoster);
-  makeDisappear(posterForm);
-  titles.push(titleInput.value);
-  quotes.push(quoteInput.value);
-  images.push(imageInput.value);
-  makePoster();
-};
-
-
-function makeSavedAppear() {
-  savedPostersGrid.innerHTML = ""
-  for(var i = 0; i < savedPosters.length; i++){
-    savedPostersGrid.innerHTML += `
-      <section class="mini-poster" id="${savedPosters[i].id}">
-        <img class="poster-img" src="${savedPosters[i].imageURL}">
-        <h2>${savedPosters[i].title}</h2>
-        <h4>${savedPosters[i].quote}</h4>
-      </section>
-    `;
-  };
-};
-
-
-function makeSavedDisappear() {
-  savedPostersGrid.innerHTML = "";
-};
-
-
-function showMakeMyPoster() {
-  makeDisappear(houdiniMainPoster);
-  makeAppear(posterForm);
-};
-
-
-function showSaved() {
-  makeDisappear(houdiniMainPoster);
-  makeAppear(savedPostersPage);
-  makeSavedAppear();
-};
-
-
-function backHome() {
-  makeDisappear(savedPostersPage);
-  makeDisappear(posterForm);
-  makeAppear(houdiniMainPoster);
-  makeSavedDisappear();
-};
-
-
 function makeDisappear(element) {
   event.preventDefault();
   element.classList.add("hidden");
 };
 
-
 function makeAppear(element) {
   event.preventDefault();
   element.classList.remove("hidden");
 };
-
 
 function savePoster() {
   if (!savedPosters.includes(currentPoster)) {
@@ -247,14 +239,6 @@ function savePoster() {
   };
 };
 
-
-function deletePoster(event) {
-var userTarget = event.target.id;
-  for(var i = 0; i < savedPosters.length; i++) {
-    if(userTarget == savedPosters[i].id.toString()) {
-      savedPosters.splice(i, 1);
-    };
-  };
-  makeSavedDisappear();
-  makeSavedAppear();
+function getRandomIndex(array) {
+  return Math.floor(Math.random() * array.length);
 };
